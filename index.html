@@ -324,7 +324,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-section">
+                    <div class="table-section links-section-custom">
                         <div class="heading">
                             <h4>Phil's Links</h4>
                         </div>
@@ -367,11 +367,6 @@
             </div>
             <div id="code">
                 <style>
-                    /*==========⚠️==========
-                    * for colors go to https://htmlcolorcodes.com/color-names
-                    * for fonts go to https://fonts.google.com
-                    * for cursors go to https://icons8.com or https://www.cursors-4u.com
-                    ============⚠️==========*/
                     * {
                         cursor: url('https://external-media.spacehey.net/media/sZ-P8ITxDc5WDNkzy36iwDJfiskIQVR4ATUA-0x68DJo=/https://cur.cursors-4u.net/cursors/cur-11/cur1054.cur'), auto;
                     }
@@ -380,7 +375,6 @@
                         cursor: url(https://external-media.spacehey.net/media/swuFkRTJOkp9EVgnjIKDNJXhawLZMRjOSm2nYy1BmAcE=/https://cur.cursors-4u.net/cursors/cur-11/cur1049.cur), auto;
                     }
 
-                    /* this is where the colors are rooted */
                     :root {
                         --headers: whitesmoke;
                         --text: whitesmoke;
@@ -392,53 +386,42 @@
                         --borders: 2px solid gray;
                     }
 
-                    /* this is where the colors for specific things are located */
                     h3,
                     h4,
                     h5 {
                         color: var(--headers) !important;
                     }
 
-                    /* headings*/
                     a {
                         color: var(--links) !important;
                     }
 
-                    /* color of links */
                     p,
                     h2,
                     .count {
                         color: var(--text);
                     }
 
-                    /* color of text */
                     .friends a p {
                         color: var(--names);
                     }
 
-                    /* color of names, and friends counter */
                     nav label {
                         color: var(--links);
                     }
 
-                    /* color of search */
                     .section h4 {
                         color: var(--headers);
                     }
 
-                    /* aboutme & want2meet headings */
                     .blurbs .heading {
                         display: none;
                     }
 
-                    /* hides the blurbs title */
                     .details p:last-child {
                         color: var(--text);
                     }
 
-                    /* where the last login and status appears */
-
-                    /* this is where your background image ends up being styled */
                     body {
                         background-image: var(--background_image);
                         background-size: contain;
@@ -446,7 +429,6 @@
                         background-color: dimgray;
                     }
 
-                    /* this is where your name appears */
                     h1 {
                         color: white;
                         font-family: var(--font-family);
@@ -458,7 +440,6 @@
                         text-align: center;
                     }
 
-                    /* the navigation is adjusted here */
                     nav {
                         background-color: black;
                         border: var(--borders);
@@ -476,8 +457,6 @@
                         text-shadow: none;
                     }
 
-                    /* this is the line that appears between links in the header and footer.
-                    you can add an emoji or symbol instead of the default line it has */
                     nav .links li:not(:last-child)::after,
                     footer .links li:not(:last-child)::after {
                         content: "|";
@@ -488,7 +467,6 @@
                         filter: brightness(0) saturate(100%) invert(50%) sepia(5%) saturate(326%) hue-rotate(174deg) brightness(92%) contrast(82%) !important;
                     }
 
-                    /* the search wrapper and button */
                     .search-wrapper input[type=text] {
                         background-color: transparent !important;
                         border: 2px solid var(--links) !important;
@@ -504,7 +482,6 @@
                         color: var(--links) !important;
                     }
 
-                    /* the online symbol and text */
                     .online {
                         color: var(--links) !important;
                         text-transform: lowercase;
@@ -516,7 +493,6 @@
                         !important;
                     }
 
-                    /* font family for the headers, navigtion links, links, body text */
                     a,
                     p,
                     b,
@@ -539,16 +515,12 @@
                         text-shadow: 0px 0px 0px black;
                     }
 
-                    /* the hr code.
-                    the hr is the horizontal line when you want to
-                    separate important info or add a break in your paragraphs*/
                     hr {
                         height: 2px;
                         background: gray;
                         border: none;
                     }
 
-                    /* this is where you adjust the borders and background */
                     .blurbs,
                     .mood,
                     .friends,
@@ -565,19 +537,14 @@
                         border: 4px groove gray;
                     }
 
-                    /* this is the border around the replies */
                     .comment-reply:not(:first-child) {
                         border-top: 2px solid var(--links);
                     }
 
-                    /* line in between comment replies*/
-
-                    /* your interest and comments table row background color */
                     td {
                         background-color: transparent !important;
                     }
 
-                    /* the middle section of your profile background color*/
                     main {
                         background: transparent;
                         border-radius: var(--curve);
@@ -585,36 +552,29 @@
                         outline: none;
                     }
 
-                    /* the interest table */
                     .table-section {
                         border: none !important;
                         border-radius: var(--curve) !important;
                     }
 
-                    /* the header section of the boxes */
                     .heading {
                         background: none !important;
                     }
 
-                    /* this is the box that says "Edit Info" when you're logged in,
-                    and to your friends it says "Profile Name is your friend". */
                     .profile-info {
                         background-color: black !important;
                         border: var(--borders) !important;
                         border-radius: var(--curve) !important;
                     }
 
-                    /* adjusting images borders and adding styling if you want to */
                     .profile-pic {
                         padding: 10px;
                     }
 
-                    /* you can add text-align:center; if you want your friends to be centered */
                     .friends-grid {
                         text-align: center;
                     }
 
-                    /* margin and padding */
                     h2,
                     h3,
                     h4,
@@ -623,7 +583,6 @@
                         padding-left: 5px !important;
                     }
 
-                    /* this is important when you have rounded corners */
                     .contact .heading,
                     .profile .table-section .heading,
                     .blog-preview .heading,
@@ -661,8 +620,6 @@
                         margin: 0px !important;
                     }
 
-                    /* this is the comments table scroll code.
-                    you can delete this if you don't want a scroll box */
                     .comments-table {
                         display: block;
                         height: 500px !important;
@@ -688,7 +645,6 @@
                 </style>
 
                 <style>
-                    /* Scrollbar styles */
                     ::-webkit-scrollbar {
                         width: 5px;
                         height: 12px;
@@ -750,11 +706,17 @@
                     .profile .col.right {
                         display: flex;
                         flex-direction: column;
-                        justify-content: flex-start; /* Aligns content to the top */
+                        justify-content: flex-start;
                     }
 
                     .blurbs {
-                        margin-top: 0; /* Ensures the blurbs div aligns to the top */
+                        margin-top: 0 !important;
+                        margin-bottom: 8px !important; /* Small gap before links */
+                    }
+
+                    /* Bring the links section closer to blurbs */
+                    .profile .col.right .table-section.links-section-custom {
+                        margin-top: 0 !important;
                     }
                 </style>
             </div>
