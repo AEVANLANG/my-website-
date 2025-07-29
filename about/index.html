@@ -5,10 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About – Phils site</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* — RESET — */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html {
+      height:100%;
+      font-family:'Inter',sans-serif;
+      background: url('../assets/img/hyrule-bg.jpg') no-repeat center center fixed;
+      background-size:cover;
+      color:#333;
+    }
+    /* — OVERLAY BLUR — */
+    .overlay {
+      background-color: rgba(0,0,0,0.2);
+      width:100%; height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(6px);
+    }
+    /* — MAC‑STYLE WINDOW — */
+    .mac-window {
+      background:#fff;
+      width:90%; max-width:800px;
+      border-radius:8px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      overflow:hidden;
+    }
+    .mac-window-header {
+      display:flex; align-items:center;
+      padding:8px; background:#f0f0f0;
+    }
+    .mac-window-header .dot {
+      width:12px; height:12px; border-radius:50%;
+      margin-right:8px;
+    }
+    .mac-window-header .red    { background:#ff5f57; }
+    .mac-window-header .yellow { background:#ffbd2e; }
+    .mac-window-header .green  { background:#28c840; }
+    /* — WINDOW CONTENT GRID — */
+    .mac-window-content {
+      display:grid;
+      grid-template-columns:1fr 2fr;
+      gap:2rem; padding:2rem;
+      color:#333;
+    }
+    .profile-pic img {
+      width:100%; height:auto;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+    .bio-text h1 {
+      margin-bottom:1rem;
+      font-size:2rem;
+      font-weight:600;
+    }
+    .bio-text p {
+      line-height:1.5;
+    }
+    /* — MOBILE STACK — */
+    @media (max-width:600px) {
+      .mac-window-content {
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+      .profile-pic { margin-bottom:1.5rem; }
+    }
+  </style>
 </head>
 <body>
-  <!-- (No welcome screen here) -->
   <div class="overlay">
     <div class="mac-window">
       <div class="mac-window-header">
@@ -23,12 +89,9 @@
         <div class="bio-text">
           <h1>About Me</h1>
           <p>
-            Hey! I’m Phil—Zelda-obsessed coder, pixel-art fanatic, and occasional speedrunner.  
-            I build small web apps, dabble in 3D modeling, and still think the best music 
-            has at least one screaming climax. This site is my personal hub for projects, 
-            thoughts, and random fun-stuff. Enjoy the journey!
+            Hey! I’m Phil—Zelda‑obsessed coder, pixel‑art fanatic, and occasional speedrunner.
+            I build sleek, futuristic sites with a retro twist and share my favorite projects here.
           </p>
-          <!-- add more paragraphs or sections here -->
         </div>
       </div>
     </div>
