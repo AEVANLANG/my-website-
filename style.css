@@ -1,3 +1,15 @@
+/* ─── GLOBAL: Prevent text selection ─── */
+* {
+  -webkit-user-select: none;  /* Chrome, Safari, Opera */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+ */
+  user-select: none;          /* Standard */
+}
+
+/* Also make any ::selection highlight invisible */
+::selection {
+  background: transparent;
+}
 /* Reset & base */
 * {
   margin: 0;
