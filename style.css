@@ -97,3 +97,14 @@ body, html {
     justify-content: center;
   }
 }
+
+body, h1, h2, h3, h4, h5, h6, p, a {
+  color: white !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black; /* fallback */
+    color: white !important;
+  }
+}
