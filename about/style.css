@@ -36,3 +36,31 @@
   transform: translateY(-3px);
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
+
+/* Grey variant for buttons on light backgrounds */
+.glass-btn-grey {
+  border: 1px solid rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.05);
+  color: #333;
+}
+
+.glass-btn-grey:hover {
+  background: rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Mobile tweaks for better readability */
+@media (max-width: 600px) {
+  .mac-window {
+    width: 95% !important;
+  }
+  .mac-window-content {
+    padding: 1.5rem !important;
+  }
+  .bio-text h1 {
+    font-size: 1.5rem;
+  }
+  .bio-text p {
+    font-size: 0.95rem;
+  }
+}
