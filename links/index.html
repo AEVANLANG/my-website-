@@ -6,6 +6,17 @@
   <title>Links</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    * {
+  -webkit-user-select: none;  /* Chrome, Safari, Opera */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+ */
+  user-select: none;          /* Standard */
+}
+
+/* Also make any ::selection highlight invisible */
+::selection {
+  background: transparent;
+}
     /* RESET & BASE */
     * {
       margin: 0;
@@ -106,7 +117,12 @@
         <!-- EXAMPLE ENTRY — duplicate & edit these blocks -->
         <a href="https://discord.gg/jzVpegKcXp" class="link-item">
           <img src="/assets/img/discord.png" alt="discord" class="link-icon" />
-          <span class="link-label">discord server</span>
+        </a>
+         <a href="https://tiktok.com/@spaghetti_on_a_goat" class="link-item">
+          <img src="/assets/img/tiktok.png" alt="tiktok" class="link-icon" />
+        </a>
+         <a href="https://t.snapchat.com/BVEF2jLe" class="link-item">
+          <img src="/assets/img/snapchat.png" alt="snapchat" class="link-icon" />
         </a>
         <!-- /END EXAMPLE ENTRY -->
       </div>
