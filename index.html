@@ -136,7 +136,7 @@
     <div class="top">
       <div class="lock" aria-hidden="true"></div>
     </div>
-    <p class="hint" aria-live="polite">Enter your top secret super confidential code</p>
+    <p class="hint" aria-live="polite">Enter the secret sequence.</p>
 
     <div class="keys" id="keys" aria-label="Numeric keypad" role="group">
       <!-- Keys are inserted by JS so we can keep markup tidy -->
@@ -153,8 +153,8 @@
     // =====================
     // CONFIG — EDIT THESE
     // =====================
-    const WORKER_URL = "https://sparkling-glitter-f8bb.philipdhayman.workers.dev/api/enter";
-    const PANEL_URL  = "/panel";
+    const WORKER_URL = "https://sparkling-glitter-f8bb.philipdhayman.workers.dev/"; // <- base URL (no trailing slash)
+    const PANEL_URL  = "/panel"; // where to go after unlock (can be a full URL)
 
     // =====================
     // Keypad logic
@@ -214,13 +214,24 @@
       }
     }
 
-    function unlock(){
-      // visual feedback, then redirect
-      successOverlay.classList.add('show');
-      wrap.style.filter = 'blur(1px)';
-      setTimeout(() => {
-        window.location.href = PANEL_URL;
-      }, 720);
+    async function unlock(){
+      // ask the Worker for a one-time ticket, then redirect with it
+      try {
+        const res = await fetch(`${WORKER_URL}/api/ticket`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+        const data = await res.json();
+        if (data && data.ok && data.ticket) {
+          successOverlay.classList.add('show');
+          wrap.style.filter = 'blur(1px)';
+          setTimeout(() => {
+            const url = new URL(PANEL_URL, window.location.origin);
+            url.searchParams.set('ticket', data.ticket);
+            window.location.href = url.toString();
+          }, 720);
+          return;
+        }
+      } catch(_){}
+      // fallback: stay on page silently
+    }, 720);
     }
 
     // Optional: keyboard support for desktop (numbers only)
