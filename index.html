@@ -34,7 +34,7 @@
     /* moving dot pattern background */
     .bg-dots::before, .bg-dots::after{
       content:"";
-      position:absolute; inset:-20vmax;  /* oversize to allow movement */
+      position:absolute; inset:-20vmax;
       background:
         radial-gradient(circle 2px at 10px 10px, var(--dots) 99%, transparent 100%)
         0 0/40px 40px;
@@ -113,7 +113,6 @@
 
     .footer{ display:flex; align-items:center; justify-content:center; padding:0 20px 18px; }
 
-    /* success overlay */
     .success{
       position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
       opacity:0; transition:opacity .18s ease-out;
@@ -124,11 +123,6 @@
       animation: pop 700ms cubic-bezier(.2,.8,.2,1) forwards; background:rgba(14,165,233,.06);
     }
     @keyframes pop{ from{ transform:scale(.6); opacity:.5 } to{ transform:scale(1.12); opacity:1 } }
-
-    /* mobile safe area tweak */
-    @supports (padding: max(0px)){
-      .wrap{ margin: max(2vh,12px) auto; }
-    }
   </style>
 </head>
 <body class="bg-dots">
@@ -139,33 +133,22 @@
     <p class="hint" aria-live="polite">Enter the secret sequence.</p>
 
     <div class="keys" id="keys" aria-label="Numeric keypad" role="group">
-      <!-- Keys are inserted by JS so we can keep markup tidy -->
+      <!-- JS will fill these -->
     </div>
 
-    <div class="footer">
-      <!-- intentionally empty: no input, no enter, no error messages -->
-    </div>
-
+    <div class="footer"></div>
     <div class="success" id="success" aria-hidden="true"><div class="ring"></div></div>
   </div>
 
   <script>
-    // =====================
-    // CONFIG — EDIT THESE
-    // =====================
-    const WORKER_URL = "https://sparkling-glitter-f8bb.philipdhayman.workers.dev/"; // <- base URL (no trailing slash)
-    const PANEL_URL  = "/panel"; // where to go after unlock (can be a full URL)
+    const WORKER_URL = "https://sparkling-glitter-f8bb.philipdhayman.workers.dev";
+    const PANEL_URL  = "/panel.html"; // landing page
 
-    // =====================
-    // Keypad logic
-    // =====================
     const keysContainer = document.getElementById('keys');
     const successOverlay = document.getElementById('success');
     const wrap = document.getElementById('wrap');
 
-    const layout = [1,2,3,4,5,6,7,8,9,'',0,'']; // no enter; blanks keep it familiar
-
-    // Create keys
+    const layout = [1,2,3,4,5,6,7,8,9,'',0,''];
     layout.forEach(v => {
       const btn = document.createElement('button');
       btn.className = 'key';
@@ -182,23 +165,19 @@
     });
 
     let buffer = "";
-    let busy = false;          // throttle network calls slightly to avoid floods
-    const MIN_DELAY = 120;     // ms between checks
+    let busy = false;
+    const MIN_DELAY = 120;
     let lastSend = 0;
 
     async function press(n){
       buffer += n;
-      if (buffer.length < 4) return; // need at least 4 presses
-
-      // rolling last-4 window
+      if (buffer.length < 4) return;
       const last4 = buffer.slice(-4);
-
       const now = Date.now();
-      if (busy || (now - lastSend) < MIN_DELAY) return; // soft throttle
+      if (busy || (now - lastSend) < MIN_DELAY) return;
       busy = true; lastSend = now;
-
       try {
-        const res = await fetch(WORKER_URL, {
+        const res = await fetch(WORKER_URL+"/api/enter", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: last4 })
@@ -208,16 +187,14 @@
           unlock();
         }
       } catch (e) {
-        // stay silent
       } finally {
         busy = false;
       }
     }
 
     async function unlock(){
-      // ask the Worker for a one-time ticket, then redirect with it
       try {
-        const res = await fetch(`${WORKER_URL}/api/ticket`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+        const res = await fetch(WORKER_URL+"/api/ticket", { method: 'POST' });
         const data = await res.json();
         if (data && data.ok && data.ticket) {
           successOverlay.classList.add('show');
@@ -230,15 +207,10 @@
           return;
         }
       } catch(_){}
-      // fallback: stay on page silently
-    }, 720);
     }
 
-    // Optional: keyboard support for desktop (numbers only)
     window.addEventListener('keydown', (e) => {
-      if (e.key >= '0' && e.key <= '9') {
-        press(e.key);
-      }
+      if (e.key >= '0' && e.key <= '9') press(e.key);
     }, { passive:true });
   </script>
 </body>
