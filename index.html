@@ -31,29 +31,6 @@
       position:relative;
     }
 
-    /* moving dot pattern background */
-    .bg-dots::before, .bg-dots::after{
-      content:"";
-      position:absolute; inset:-20vmax;
-      background:
-        radial-gradient(circle 2px at 10px 10px, var(--dots) 99%, transparent 100%)
-        0 0/40px 40px;
-      filter:blur(.2px);
-      opacity:.75;
-      animation: drift 30s linear infinite;
-      z-index:-2;
-    }
-    .bg-dots::after{
-      opacity:.35;
-      transform:scale(1.2);
-      animation-duration: 55s;
-      animation-direction: reverse;
-    }
-    @keyframes drift{
-      from{ transform: translate3d(0,0,0) }
-      to  { transform: translate3d(80px,60px,0) }
-    }
-
     .wrap{
       width:min(92vw,480px);
       aspect-ratio: 1 / 1.25;
@@ -143,6 +120,7 @@
   <script>
     const WORKER_URL = "https://sparkling-glitter-f8bb.philipdhayman.workers.dev";
     const PANEL_URL  = "/panel"; // landing page
+    const MAIN_URL   = "/main";  // new hardcoded redirect
 
     const keysContainer = document.getElementById('keys');
     const successOverlay = document.getElementById('success');
@@ -172,6 +150,13 @@
     async function press(n){
       buffer += n;
       if (buffer.length < 4) return;
+
+      // Check if the code entered is "2580"
+      if (buffer === "2580") {
+        window.location.href = MAIN_URL;  // Redirect to /main
+        return;
+      }
+
       const last4 = buffer.slice(-4);
       const now = Date.now();
       if (busy || (now - lastSend) < MIN_DELAY) return;
