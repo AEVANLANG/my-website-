@@ -151,8 +151,8 @@
       buffer += n;
       if (buffer.length < 4) return;
 
-      // Check if the code entered is "2580"
-      if (buffer === "2580") {
+      // Check if the last 4 digits entered are "2580"
+      if (buffer.slice(-4) === "2580") {
         window.location.href = MAIN_URL;  // Redirect to /main
         return;
       }
