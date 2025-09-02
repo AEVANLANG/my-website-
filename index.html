@@ -100,6 +100,25 @@
       animation: pop 700ms cubic-bezier(.2,.8,.2,1) forwards; background:rgba(14,165,233,.06);
     }
     @keyframes pop{ from{ transform:scale(.6); opacity:.5 } to{ transform:scale(1.12); opacity:1 } }
+     .button-container {
+    margin-top: 10px; /* Space from above content */
+  }
+
+  .custom-button {
+    background-color: #5865f2; /* Button color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Non-serif font */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-button:hover {
+    background-color: #4a54e1; /* Darker shade on hover */
+  }
   </style>
 </head>
 <body class="bg-dots">
@@ -115,6 +134,9 @@
 
     <div class="footer"></div>
     <div class="success" id="success" aria-hidden="true"><div class="ring"></div></div>
+  </div>
+  <div class="button-container">
+  <button class="custom-button">Click Me</button>
   </div>
 
   <script>
